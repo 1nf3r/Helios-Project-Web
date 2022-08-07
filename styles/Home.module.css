@@ -48,6 +48,7 @@
 .title,
 .description {
   text-align: center;
+  margin-bottom: 25%;
 }
 
 .description {
@@ -88,8 +89,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
 .card h2 {
