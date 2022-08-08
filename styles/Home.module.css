@@ -39,10 +39,20 @@
   text-decoration: underline;
 }
 
-.title {
+/* .title {
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+} */
+
+.title{
+  text-align: center;
+    position: relative;
+    font-family: 'Syne_Mono';
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 10vmin;
+    margin-top: 3.12rem;
 }
 
 .title,
@@ -109,6 +119,20 @@
   margin-left: 0.5rem;
 }
 
+/* 
+.scene{
+  width:100vw;
+  height:100vh;
+} */
+
+.canvas{
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+  background-color: #000;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -127,4 +151,28 @@
   .logo img {
     filter: invert(1);
   }
+}
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('../public/fonts/Comfortaa/Comfortaa-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Syne_Mono';
+  src: url('../public/fonts/Syne_Mono/SyneMono-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Share_Tech_Mono';
+  src: url('../public/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
