@@ -119,11 +119,11 @@
   margin-left: 0.5rem;
 }
 
-/* 
+
 .scene{
   width:100vw;
   height:100vh;
-} */
+}
 
 .canvas{
   position: fixed;
@@ -131,6 +131,11 @@
   left: 0;
   outline: none;
   background-color: #000;
+}
+
+.button{
+  position: absolute;
+  color: white;
 }
 
 @media (max-width: 600px) {

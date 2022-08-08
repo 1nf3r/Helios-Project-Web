@@ -1,7 +1,9 @@
 import styles from '../styles/Home.module.css'
 import { Canvas } from "@react-three/fiber";
-import Core from '../components/three-components/core';
-import Caption from '../components/three-components/Caption';
+import Core from '../components/three-components/Core';
+import CaptionTitle from '../components/three-components/CaptionTitle';
+import CameraEffect from '../components/three-components/CameraEffect';
+// import DButton from '../components/three-components/Buttons'
 import Link from 'next/link'
 
 export default function Home() {
@@ -10,15 +12,22 @@ export default function Home() {
       <Canvas
         className={styles.canvas}
         camera={{
-          position: [-6, 7, 7],
+          position: [0, 0, 7],
         }}
       >
-        <Caption>{`Helios Project`}</Caption>
+        <CaptionTitle>{`HELIOS PROJECT`}</CaptionTitle>
+        <CameraEffect />
+        {/* <button className={styles.button}>Test</button> */}
+
+
+        {/* <DButton>{`Inicio`}</DButton> */}
+
         {/* <ambientLight color={"white"} intensity={0.3} /> */}
         {/* <Core position={[0, -1, 0]} /> */}
 
       </Canvas>
-      <main className={styles.main}>
+
+      {/* <main className={styles.main}>
         <h1 className={styles.title}>
           Helios Project
         </h1>
@@ -34,8 +43,7 @@ export default function Home() {
             </a>
           </Link>
         </div>
-      </main>
+      </main> */}
     </div>
   )
 }
-

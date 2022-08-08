@@ -1,7 +1,7 @@
 
 import React from "react";
 
-const Floor = (props) => {
+const Core = (props) => {
   return (
     <mesh {...props} >
       <boxBufferGeometry args={[20,1,10]} />
@@ -10,4 +10,4 @@ const Floor = (props) => {
   );
 }
 
-export default Floor;
+export default Core;
