@@ -67,7 +67,7 @@ const Aura = (props) => {
   
   return (
     <mesh ref={sphereRef} {...props}>
-      <sphereGeometry ref={sphereGeo} args={[1.7, 64, 32]} />
+      <sphereGeometry ref={sphereGeo} args={[2, 64, 32]} />
       <shaderMaterial attach="material" args={[SphereShaderMaterial]} />
     </mesh>
   );

@@ -161,7 +161,7 @@ const Core = (props) => {
 
   return (
     <mesh ref={sphereRef} {...props}>
-      <sphereGeometry args={[1.8, 64, 32]} />
+      <sphereGeometry args={[2, 64, 32]} />
       <shaderMaterial attach="material" args={[SphereShaderMaterial]} />
     </mesh>
   );
