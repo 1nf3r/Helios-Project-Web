@@ -1,6 +1,6 @@
 import {MDXRemote} from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from "../lib/mdx"
-import MDXComponents from '../components/MDXComponents';
+import MDXComponents from '../components/blog-components/MDXComponents';
 
 export default function Post({source, frontmatter})  {
     return <MDXRemote {...source} components={MDXComponents}/>
