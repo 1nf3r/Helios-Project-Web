@@ -8,8 +8,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    position: relative;
   }
   
   .footer {
@@ -39,10 +40,11 @@
     text-decoration: underline;
   }
   
-  .title {
+.title {
     margin: 0;
     line-height: 1.15;
     font-size: 4rem;
+    font-family: 'Share_Tech_Mono';
   }
   
   .title,
@@ -70,31 +72,36 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 800px;
+    max-width: 60rem;
+    margin-top: 7rem;
   }
   
   .card {
     margin: 1rem;
     padding: 1.5rem;
     text-align: left;
-    color: inherit;
+    color: #c2c0c0;
     text-decoration: none;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
+    border: 0.063rem solid #eaeaea;
+    border-radius: 0.625rem;
     transition: color 0.15s ease, border-color 0.15s ease;
-    max-width: 300px;
+    max-width: 18rem;
+    min-width: 18rem;
+    max-height: 18rem;
+    min-height: 18rem;
   }
   
   .card:hover,
   .card:focus,
   .card:active {
-    color: #0070f3;
-    border-color: #0070f3;
+    color: #ffffff;
+    border-color: #ffffff;
   }
   
   .card h2 {
     margin: 0 0 1rem 0;
     font-size: 1.5rem;
+    font-family: Share_Tech_Mono;
   }
   
   .card p {
@@ -107,23 +114,18 @@
     height: 1em;
     margin-left: 0.5rem;
   }
-  
+
   @media (max-width: 600px) {
     .grid {
       width: 100%;
       flex-direction: column;
     }
   }
-  
-  @media (prefers-color-scheme: dark) {
-    .card,
-    .footer {
-      border-color: #222;
-    }
-    .code {
-      background: #111;
-    }
-    .logo img {
-      filter: invert(1);
-    }
+
+  @font-face {
+    font-family: 'Share_Tech_Mono';
+    src: url('../public/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }

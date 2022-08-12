@@ -5,6 +5,7 @@ import styles from '../styles/Blog.module.css'
 
  const Blog = ({ posts }) => {
     return (
+      
         <div className={styles.container}>
         <Head>
             <title>Helios Blog</title>
@@ -14,7 +15,7 @@ import styles from '../styles/Blog.module.css'
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Bienvenido a Helios Blog
+          Blogs Recientes
         </h1>
 
         {/* <p className={styles.description}>
@@ -23,7 +24,13 @@ import styles from '../styles/Blog.module.css'
         </p> */}
 
         <div className={styles.grid}>
-          {posts.map((post) => (
+          {posts.sort(
+            function (a,b){
+              return a.id - b.id
+            }
+          )
+          .reverse()
+          .map((post) => (
           <Link 
             key={post.slug}
             href={`/${post.slug}`} 
@@ -39,7 +46,7 @@ import styles from '../styles/Blog.module.css'
       </main>
 
       <footer className={styles.footer}>
-        <p>test</p>
+        <p>footer</p>
       </footer>
     </div>
   )
