@@ -18,6 +18,7 @@
     "@fontsource/syne": "^4.5.10",
     "@react-three/drei": "^9.19.7",
     "@react-three/fiber": "^8.3.0",
+    "date-fns": "^2.29.1",
     "framer-motion": "^6.5.1",
     "gray-matter": "^4.0.3",
     "next": "12.2.4",

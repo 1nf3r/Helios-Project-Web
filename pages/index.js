@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css' //QUITARLO Y SUBSTITUIR POR CHAKRA
 import Head from 'next/head'
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from '@react-three/drei';

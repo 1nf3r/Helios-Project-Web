@@ -77,11 +77,30 @@ button.main_menu:hover{
     padding-right: 10%;
 } */
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@media all and (max-width:45em){
+  button.main_menu{
+      display: block;
+      margin: auto;
+      margin-top: 0.62rem;
   }
+  
+  nav.main{
+    position: relative;
+    padding: 0.62rem 1.56rem;
+    text-align: center;
+    margin-top: 20rem;
+  }
+
+  .title{
+    text-align: center;
+      position: relative;
+      font-family: 'Syne_Mono';
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 13vmin;
+      margin-top: 3.12rem;
+  }
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -95,6 +114,10 @@ button.main_menu:hover{
   .logo img {
     filter: invert(1);
   }
+}
+
+@media screen {
+  
 }
 
 /* @font-face {

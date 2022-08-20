@@ -1,21 +1,25 @@
 import {MDXRemote} from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from "../lib/mdx"
 import MDXComponents from '../components/blog-components/MDXComponents';
-import styles from '../styles/Blog.module.css' //Hay que quitarlo
+import { Layout } from '../components/blog-components/Layout';
+// import styles from '../styles/Blog.module.css' //Hay que quitarlo
 
 
 export default function Post({source, frontmatter})  {
     return (
-        <div className={styles.container}>
+        <Layout type='post' metadata={frontmatter}>
             <MDXRemote {...source} components={MDXComponents}/>
-        </div>
+        </Layout>
     )
 }
 
 export async function getStaticProps({params}) {
-    const {source, fronmatter} = await getFileBySlug(params.slug)
+    const {source, frontmatter} = await getFileBySlug(params.slug)
     return {
-        props: { source, fronmatter}
+        props: { 
+            source,
+            frontmatter
+        }
     }
 }
 
