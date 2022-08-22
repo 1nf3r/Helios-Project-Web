@@ -12,13 +12,17 @@ const theme = extendTheme({
         },
     },
     fonts: {
-        heading: "Syne",
-        body: "Comfortaa"
+        heading: "Share Tech Mono",
+        body: "Share Tech Mono"
     },
     sizes: {
         container: {
-          "2xl": "1440px",
+          "2xl": "1920px",
         }
+    },
+    config: {
+        initialColorMode: 'light',
+        useSystemColorMode: false,
     },
 })
 

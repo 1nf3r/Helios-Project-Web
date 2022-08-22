@@ -37,4 +37,5 @@ export {
     AccordionPanel,
     AccordionIcon,
     Img,
+    useColorModeValue,
   } from "@chakra-ui/react";

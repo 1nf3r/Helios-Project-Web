@@ -1,4 +1,3 @@
-// import '../styles/globals.css'
 import "../styles/fonts";
 import theme, { ThemeProvider } from "../styles/theme.js";
 

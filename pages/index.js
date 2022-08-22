@@ -1,5 +1,5 @@
-import styles from '../styles/Home.module.css' //QUITARLO Y SUBSTITUIR POR CHAKRA
 import Head from 'next/head'
+import { Box } from '../components/blog-components/ChakraElements'
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from '@react-three/drei';
 import CameraEffect from '../components/three-components/CameraEffect';
@@ -14,14 +14,14 @@ export default function Home() {
         <meta name="description" content="Helios Project Website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.scene}>
-        <Canvas className={styles.canvas} >
+      <Box position='relative' h='100vh' bg='black' >
+        <Canvas >
           <PerspectiveCamera makeDefault position={[0, 0, 13]} />
           {/* <CameraEffect /> */}
           <EnergyCore />
         </Canvas>
         <HomeContent />
-      </div>
+      </Box>
     </div>
   )
 }

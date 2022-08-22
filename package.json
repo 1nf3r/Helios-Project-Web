@@ -1,5 +1,5 @@
 {
-  "name": "helios-project-blog-next",
+  "name": "helios-project-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,10 +15,9 @@
     "@emotion/styled": "^11.10.0",
     "@fontsource/comfortaa": "^4.5.9",
     "@fontsource/share-tech-mono": "^4.5.9",
-    "@fontsource/syne": "^4.5.10",
+    "@fontsource/syne-mono": "^4.5.8",
     "@react-three/drei": "^9.19.7",
     "@react-three/fiber": "^8.3.0",
-    "date-fns": "^2.29.1",
     "framer-motion": "^6.5.1",
     "gray-matter": "^4.0.3",
     "next": "12.2.4",

@@ -4,9 +4,9 @@ import {
   Switch,
   Flex,
   Button,
-  IconButton
+  IconButton,
 } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, CloseIcon, MoonIcon } from '@chakra-ui/icons'
 import NextLink from 'next/link'
 
 
@@ -17,22 +17,22 @@ export const Navbar = () => {
   return (
     <Flex>
       <Flex
-        m='auto'
-        position="relative"
-        top="1rem"
+        mx={[0, 'auto']}
+        position={["fixed", "relative"]}
+        top={["38rem", "1rem"]}
         right="1rem"
         align="center"
       >
         {/* Desktop */}
         <Flex
-          display={['none', 'none', 'flex','flex']}
+          display={['none', 'flex', 'flex','flex']}
         >
           <NextLink href="/" passHref>
             <Button
               as="a"
               variant="ghost"
               aria-label="Inicio"
-              my={5}
+              my={1}
               minW={14}
             >
               Inicio
@@ -44,7 +44,7 @@ export const Navbar = () => {
               as="a"
               variant="ghost"
               aria-label="Blog"
-              my={5}
+              my={1}
               minW={14}
             >
               Blog
@@ -56,44 +56,47 @@ export const Navbar = () => {
               as="a"
               variant="ghost"
               aria-label="Proyectos"
-              my={5}
+              my={1}
               minW={14}
             >
               Proyectos
                     </Button>
           </NextLink>
 
-          <NextLink href="/sobre-mi" passHref>
+          <NextLink href="/contacto" passHref>
             <Button
               as="a"
               variant="ghost"
               aria-label="Contacto"
-              my={5}
+              my={1}
               minW={14}
             >
               Contacto
                     </Button>
           </NextLink>
+          <Switch
+          color="green"
+          isChecked={isDark}
+          onChange={toggleColorMode}
+          mr='2'
+          mt='0.85rem'
+          display={['none', 'none', 'flex', 'flex']}
+        />
+        <MoonIcon mt='0.95rem' display={['none', 'none', 'flex', 'flex']} />
         </Flex>
-
         {/* Mobile */}
         <IconButton
           aria-label="Open Menu"
           size="lg"
           mr={2}
+          bgColor='gray.400'
           icon={
-            <HamburgerIcon />
+            <HamburgerIcon  />
           }
           onClick={() => changeDisplay('flex')}
-          display={['flex', 'flex', 'none', 'none']}
-        />
-        <Switch
-          color="green"
-          isChecked={isDark}
-          onChange={toggleColorMode}
+          display={['flex', 'none', 'none', 'none']}
         />
       </Flex>
-
       {/* Mobile Content */}
       <Flex
         w='100vw'
@@ -165,7 +168,7 @@ export const Navbar = () => {
                     </Button>
           </NextLink>
 
-          <NextLink href="/sobre-mi" passHref>
+          <NextLink href="/contacto" passHref>
             <Button
               as="a"
               variant="outline"
@@ -177,6 +180,15 @@ export const Navbar = () => {
               Contacto
             </Button>
           </NextLink>
+          <Flex>
+            <Switch
+            color="green"
+            isChecked={isDark}
+            onChange={toggleColorMode}
+            mr='2'
+            />
+            <MoonIcon />
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
