@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Box } from '../components/blog-components/ChakraElements'
+import { Box } from '../components/web-components/ChakraElements'
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from '@react-three/drei';
 import CameraEffect from '../components/three-components/CameraEffect';

@@ -5,8 +5,9 @@ import {
   Flex,
   Button,
   IconButton,
-} from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon, MoonIcon } from '@chakra-ui/icons'
+  Box
+} from '../web-components/ChakraElements'
+import { HamburgerIcon, CloseIcon, MoonIcon } from '../web-components/ChakraIcons'
 import NextLink from 'next/link'
 
 
@@ -82,10 +83,13 @@ export const Navbar = () => {
           mt='0.85rem'
           display={['none', 'none', 'flex', 'flex']}
         />
-        <MoonIcon mt='0.95rem' display={['none', 'none', 'flex', 'flex']} />
+        <Box mt='0.95rem' display={['none', 'none', 'flex', 'flex']} >
+          <MoonIcon  />
+        </Box>
         </Flex>
         {/* Mobile */}
         <IconButton
+          zIndex='100'
           aria-label="Open Menu"
           size="lg"
           mr={2}

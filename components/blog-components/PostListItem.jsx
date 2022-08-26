@@ -1,5 +1,5 @@
-import { Box, Heading, Flex, Text, Tag, useColorModeValue } from "./ChakraElements";
-import { CalendarIcon } from "@chakra-ui/icons";
+import { Box, Heading, Flex, Text, Tag, useColorModeValue } from "../web-components/ChakraElements";
+import { CalendarIcon } from "../web-components/ChakraIcons";
 
 
 export const PostListItem = ({ title, date, tags }) => {
@@ -10,8 +10,8 @@ export const PostListItem = ({ title, date, tags }) => {
         {title}
       </Heading>
       <Flex align="center" fontSize="sm" >
+      <CalendarIcon mr='0.4rem' />
         <Text ml={1} >
-          <CalendarIcon mr='0.4rem' />
           {date}{" "}
           {tags.map((tag) => (
             <Tag key={tag} size="sm" mx={2} bg={bg}>

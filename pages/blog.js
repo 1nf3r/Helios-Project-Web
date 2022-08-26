@@ -13,8 +13,8 @@ import {
   Box,
   Img,
   Divider,
-} from '@chakra-ui/react'
-import { SearchIcon } from "@chakra-ui/icons";
+} from '../components/web-components/ChakraElements'
+import { SearchIcon } from "../components/web-components/ChakraIcons";
 import { Navbar } from '../components/web-components/NavBar';
 import { PostListItem } from '../components/blog-components/PostListItem';
 import Footer from '../components/web-components/Footer';

@@ -1,5 +1,5 @@
-import Link from 'next/dist/client/link';
-import { Box, Text, Button } from '../blog-components/ChakraElements'
+import Link from 'next/link';
+import { Box, Text, Button } from './ChakraElements'
 
 const HomeContent = () => {
     return (

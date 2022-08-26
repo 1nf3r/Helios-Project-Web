@@ -1,5 +1,5 @@
 import { Navbar } from "../web-components/NavBar";
-import { Flex } from "./ChakraElements";
+import { Flex } from "../web-components/ChakraElements";
 
 
 export const PageHeader = () => {

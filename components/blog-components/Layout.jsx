@@ -1,6 +1,6 @@
 // import { OpenGraph } from "./OpenGraph";
 import { Fragment } from "react";
-import { Heading, Container, Flex, Box, useColorModeValue, } from "./ChakraElements";
+import { Heading, Container, Flex, Box, useColorModeValue, } from '../web-components/ChakraElements';
 import { PageHeader } from "./PageHeader";
 import { OpenGraph } from "./OpenGraph";
 import Footer from "../web-components/Footer";
