@@ -23,6 +23,7 @@ export const Navbar = () => {
         top={["38rem", "1rem"]}
         right="1rem"
         align="center"
+        zIndex='10'
       >
         {/* Desktop */}
         <Flex
@@ -89,7 +90,6 @@ export const Navbar = () => {
         </Flex>
         {/* Mobile */}
         <IconButton
-          zIndex='100'
           aria-label="Open Menu"
           size="lg"
           mr={2}

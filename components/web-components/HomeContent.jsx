@@ -3,8 +3,8 @@ import { Box, Text, Button } from './ChakraElements'
 
 const HomeContent = () => {
     return (
-        <Box position='absolute' top='0' right='0' left='0' h='100vh'>
-          <Box w='100%' p='2rem' h='100%'>
+        <Box position='fixed' top='0' right='0' left='0' h='100vh'>
+          <Box w='100%' mt={['2vh','4vh']} h='100%'>
             <Text as='h1' 
             textAlign='center'
             fontFamily='Syne Mono'
@@ -15,7 +15,9 @@ const HomeContent = () => {
             </Text>
             <Box as='nav'
             textAlign= 'center'
-            mt={['21rem','15rem','20rem','22rem','23rem','33rem']}
+            position='fixed'
+            w='100%'
+            mt={['45vh','50vh']}
             >
               <Link href="/mis-proyectos">
                 <a>
