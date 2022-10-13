@@ -3,11 +3,7 @@ import { GithubIcon } from './ChakraIcons';
 import NextLink from 'next/link';
 
 
-const ProjectCard = ({data}) => {
-    let contador = 10;
-    setTimeout(() => { contador += contador }, 5000);
-    console.log(contador);
-    
+const ProjectCard = ({data}) => {    
     return (
         <Flex h={['80vh','100vh']} justifyContent={data.position} >
             <Box

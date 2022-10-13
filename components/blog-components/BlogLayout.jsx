@@ -9,10 +9,11 @@ import {
   Box,
   Img,
   Divider,
+  Text,
 } from '../web-components/ChakraElements'
 import { SearchIcon } from '../web-components/ChakraIcons';
 import { Navbar } from '../web-components/NavBar';
-import { PostListItem } from './PostListItem';
+import { PostListItemV1 } from './PostListItemsV1';
 import Computer from '../three-components/BlogBanner/Computer';
 import Loader from '../three-components/ProgressLoader';
 
@@ -23,7 +24,7 @@ const BlogLayout = ({posts}) => {
         (a, b) => (a.id - b.id)
       )
       .filter((data) => 
-      data.title.toLowerCase().includes(searchValue.toLowerCase())
+        data.tag.toLowerCase().includes(searchValue.toLowerCase())
       )
     return (
         <Box>
@@ -34,11 +35,10 @@ const BlogLayout = ({posts}) => {
                 >
                 <Canvas camera={{ fov: 45, near: 0.1, far: 100, position: [0, 0, 30] }} >
                     <Suspense fallback={<Loader />}>
-                    <ambientLight intensity={0.1} />
-                    <directionalLight />
-                    <Computer />
+                        <ambientLight intensity={0.1} />
+                        <directionalLight />
+                        <Computer />
                     </Suspense>
-                    
                 </Canvas>
                 </Box>
                 <Divider display={['none', 'flex', 'flex','flex']}/>
@@ -56,7 +56,15 @@ const BlogLayout = ({posts}) => {
                 </Box>
             </Box>
             <SimpleGrid  columns={[1,1,2,3]} spacing={10} width={['95%','80%']}  m='auto' my='10'>
-            {!filteredBlogPost.length && 'No se ha encontrado ningun post'}
+                {console.log(filteredBlogPost)}
+            {!filteredBlogPost.length && 
+            <Box width={['80vw']} minH={'30vh'} textAlign={'center'}>
+                <br/>
+                <br/>
+                <br/>
+                <Text>No se ha encontrado ningun post</Text>
+            </Box>
+            }
             {filteredBlogPost.sort(
                 function (a,b){
                 return a.id - b.id
@@ -64,21 +72,21 @@ const BlogLayout = ({posts}) => {
             )
             .reverse()
             .map((post) => (
-                <Box p={4} display={{ md: 'flex' }}>
-                <Link key={post.slug} href={`/${post.slug}`} >
+                <Box key={post.slug} p={4} display={{ md: 'flex' }}>
+                <Link href={`/${post.slug}`} >
                     <a>
                     <Box flexShrink={0}>
                         <Img
                         borderRadius='lg'
-                        src='https://cdn.pixabay.com/photo/2022/06/01/17/40/landscape-7236275_960_720.jpg' /* ={`/${post.coverPage}`} */
-                        alt='Test'
+                        src={post.coverPage}
+                        alt='Null'
                         />
                     </Box>
                     <Box textAlign='left' mt='4'>
-                    <PostListItem
+                    <PostListItemV1
                         title={post.title}
                         date={post.date}
-                        tags={post.tags}
+                        tag={post.tag}
                     />
                     </Box>
                     </a>

@@ -7,7 +7,7 @@ import Footer from "../web-components/Footer";
 
 
 export const Layout = ({ children, metadata = {}, type = "post" }) => {
-    const width = type === "post" ? "80%" : "100%";
+    const width = type === "post" ? "60%" : "100%";
     const isBlogTemplate = type === "post" && metadata.date;
     const generalBg = useColorModeValue('gray','gray.900')
     const bg = useColorModeValue('white', 'gray')

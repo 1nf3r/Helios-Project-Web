@@ -5,7 +5,7 @@ export const HeadBlog = ({title}) => {
         <Head>
             <title>{title}</title>
             <meta name="Helios Blog" content="IT Blogs" />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/favicon.svg" />
         </Head>
     )
 }  

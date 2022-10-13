@@ -5,4 +5,5 @@ export {
     IoCalendar as CalendarIcon,
     IoSearch as SearchIcon,
     IoLogoGithub as GithubIcon,
+    IoLogoLinkedin as LinkedinIcon
 } from 'react-icons/io5'

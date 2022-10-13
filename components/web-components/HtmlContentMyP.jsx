@@ -1,6 +1,7 @@
 import { Navbar } from "./NavBar";
 import { Divider, Box } from './ChakraElements'
 import ProjectCard from "./ProjectCard";
+import Footer from "./Footer";
 
 const MyPrHtmlContent = () => {
     const firstCard = {
@@ -37,6 +38,7 @@ const MyPrHtmlContent = () => {
             <ProjectCard data={firstCard}/>
             <ProjectCard data={secondCard}/>
             <ProjectCard data={thirdCard}/>
+            <Footer />
         </>
     )
 }

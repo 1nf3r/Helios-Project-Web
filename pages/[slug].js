@@ -2,7 +2,6 @@ import {MDXRemote} from 'next-mdx-remote'
 import { getFileBySlug, getFiles } from "../lib/mdx"
 import MDXComponents from '../components/blog-components/MDXComponents';
 import { Layout } from '../components/blog-components/Layout';
-// import styles from '../styles/Blog.module.css' //Hay que quitarlo
 
 
 export default function Post({source, frontmatter})  {

@@ -12,7 +12,7 @@ export default function Home() {
       <Head>
         <title>Helios Project</title>
         <meta name="description" content="Helios Project Website" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <Box position='relative' h='100vh' bg='black'  >
       {/* <Suspense fallback={null}> */}

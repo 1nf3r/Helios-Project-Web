@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 const Computer = () => {
     const sceneRef = useRef()
-    const gltf = useLoader(GLTFLoader, '/models/Computer.gltf')
+    const gltf = useLoader(GLTFLoader, '/models/Computer.glb')
     useFrame(() => {
       sceneRef.current.rotation.y += -0.005;
     });

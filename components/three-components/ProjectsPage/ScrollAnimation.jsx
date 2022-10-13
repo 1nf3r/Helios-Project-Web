@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import * as THREE from 'three'
+import { GLTFLoader } from "three/examples/jsm/loaders/gltfloader";
 import gsap from 'gsap'
 
 const ScrollAnimation = () => {
@@ -82,6 +83,15 @@ const ScrollAnimation = () => {
         renderer.setSize(sizes.width, sizes.height)
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     })
+
+    const gltfLoader = new GLTFLoader()
+    gltfLoader.load(
+        '/models/Computer.gltf',
+        (gltf) => {
+            scene.add(gltf)  //Cargar toda la escena entera
+            console.log(gltf)
+        }
+    )
     
     const cameraGroup = new THREE.Group()
     scene.add(cameraGroup)

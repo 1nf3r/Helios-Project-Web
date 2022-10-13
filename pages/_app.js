@@ -1,4 +1,5 @@
 import "../styles/fonts";
+import "../styles/prism-atom-dark.css"
 import theme, { ThemeProvider } from "../styles/theme.js";
 
 function MyApp({ Component, pageProps }) {
