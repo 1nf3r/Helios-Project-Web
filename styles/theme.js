@@ -15,6 +15,11 @@ const theme = extendTheme({
         heading: "Share Tech Mono",
         body: "Share Tech Mono"
     },
+    layerStyles: {
+        selected: {
+            
+        },
+    },
     sizes: {
         container: {
           "2xl": "1920px",

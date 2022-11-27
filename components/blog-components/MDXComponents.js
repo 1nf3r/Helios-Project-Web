@@ -1,13 +1,11 @@
-import { Podcast } from "./Podcast";
 import { Youtube } from "./Youtube";
 import { HeadBlog } from './HeadBlog'
-import { PlayList } from './PlayList'
-import { ShortcutKey } from "./ShortcutKey";
+import { ShortcutKey } from "./ShortcutKey"
+import { Route } from './Route'
 
 export default {
-    Podcast,
     Youtube,
     HeadBlog,
-    PlayList,
     ShortcutKey,
+    Route,
 }

@@ -2,6 +2,7 @@ export {
     Box,
     Flex,
     Spacer,
+    Code,
     Container,
     Image,
     Stack,

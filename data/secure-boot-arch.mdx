@@ -1,0 +1,198 @@
+---
+title: "Iniciar Arch Linux con UEFI Secure Boot"
+date: '11-08-2022'
+id: '3'
+description: test
+tag: 'Arch Linux'
+coverPage: '/images/blog/test.jpg'
+---
+
+<br/>
+<br/>
+Antes de comenzar en la NVRam de la placa base tenemos cuatro variables llamadas: PK KEK DB DBX,
+
+- __DB__ (aka, 'signature database'): contains the trusted keys used for authenticating any applications or drivers executed in the UEFI environment<br/>
+- __DBX__ (aka, 'forbidden signature database' or 'signature database blacklist'): contains a set of explicitly untrusted keys and binary hashes. 
+Any application or driver signed by these keys or matching these hashes will be blocked from execution.<br/>
+- __KEK__ (key exchange keys database): contains the set of keys trusted for updating DB and DBX<br/>
+- __PK__ (platform key - while PK is often referred to simply as a single public key, it could be implemented as a database). 
+Only updates signed with PK can update the KEK database.<br/>
+
+El modo secure boot de la uefi tiene dos modos: usuario y setup mode
+-En el modo usuario (PK creada): las variables no pueden ser modificadas sin llaves ni firmas propias
+
+-En el setup mode (PK no creada): se pueden establecer las variables que queramos sin ninguna llave ni firma 
+
+Despues de entender para que sirven estas 4 variables vamos a crear nuestras propias variables firmadas por nosotros mismos manteniendo las que ya estan en la nvram(certificados de microsoft).<br/>
+<br/>
+## __Proceso a seguir:__ 
+
+1.Tener el secure boot desactivado y iniciar el linux<br/>
+2.Leer y hacer un backup de las variables existentes (Microsoft)<br/>
+3.Generar nuevas llaves<br/>
+4.Crear variables compuestas de nuestras llaves propias y las llaves existentes que tenemos en el backup creado 
+anteriorimente<br/>
+5.Reiniciar el ordenador i en la uefi poner el setup mode del secure boot<br/>
+6.Iniciar nuevamente linux y cargar las variables compuestas creadas anteriormente, esto hara que despues de cargar las
+llaves, la uefi se ponga en modo usuario<br/>
+
+
+<br/>
+## Comandos Utilizados: <br/>
+Antes de comenzar deberemos tener las siguientes aplicaciones instaladas: efitools sbsigntools mokutil openssl
+
+Al tener un linux iniciado con el secure boot desactivado:
+```shell
+mkdir -p /etc/efikeys
+cd /etc/efikeys
+chmod 700 /etc/efikeys
+```
+
+Leeremos las variables ya creadas y haremos backup:
+```shell
+efi-readvar -v PK -o old_PK.esl
+efi-readvar -v KEK -o old_KEK.esl
+efi-readvar -v db -o old_db.esl
+efi-readvar -v dbx -o old_dbx.esl
+```
+
+Crearemos tres llaves con openssl, una para nuestra PK, otra sera KEK y otra para db y cambiaremos el permiso de las llaves para que nadie pueda leerlas.
+
+```shell
+openssl req -new -x509 -newkey rsa:2048 -subj "/CN=My Platform Key/" -keyout PK.key -out PK.crt -days 3650 -nodes -sha256
+
+openssl req -new -x509 -newkey rsa:2048 -subj "/CN=Key exchange key/" -keyout KEK.key -out KEK.crt -days 3650 -nodes -sha256
+
+openssl req -new -x509 -newkey rsa:2048 -subj "/CN=Kernel signing key/" -keyout db.key -out db.crt -days 3650 -nodes -sha256
+
+chmod 400 *.key
+```
+
+Cambiaremos los certificados a firmas.
+```shell
+UUID=$(uuidgen)
+cert-to-efi-sig-list -g $UUID PK.crt PK.esl
+sign-efi-sig-list -k PK.key -c PK.crt PK PK.esl PK.auth
+
+cert-to-efi-sig-list -g $UUID KEK.crt KEK.esl
+sign-efi-sig-list -a -k PK.key -c PK.crt KEK KEK.esl KEK.auth
+
+cert-to-efi-sig-list -g $UUID db.crt db.esl
+sign-efi-sig-list -a -k KEK.key -c KEK.crt db db.esl db.auth
+
+sign-efi-sig-list -k KEK.key -c KEK.crt dbx old_dbx.esl old_dbx.auth
+```
+
+Crearemos certificados de nuestras llaves en formato DER
+```shell
+openssl x509 -outform DER -in PK.crt -out PK.cer
+openssl x509 -outform DER -in KEK.crt -out KEK.cer
+openssl x509 -outform DER -in db.crt -out db.cer
+```
+
+Combinaremos las llaves ya existentes (Microsoft) con las llaves generadas por nosotros.
+```shell
+cat old_KEK.esl KEK.esl > compound_KEK.esl
+cat old_db.esl db.esl > compound_db.esl
+sign-efi-sig-list -k PK.key -c PK.crt KEK compound_KEK.esl compound_KEK.auth
+sign-efi-sig-list -k KEK.key -c KEK.crt db compound_db.esl compound_db.auth
+```
+
+Reiniciaremos el pc y entraremos a la uefi, en la opcion del secure boot lo pondremos en setup mode
+Volvemos a iniciar linux
+
+Si hemos establecido el setup mode correctamente al ejecutar el comando efi-readvar nos ha tenido que salir:
+```shell
+Variable PK has no entries
+Variable KEK has no entries
+Variable db has no entries
+Variable dbx has no entries
+Variable MokList has no entries
+```
+
+cd /etc/efikeys
+actualizaremos las variables con las llaves compuestas que hemos generado nosotros
+```shell
+efi-updatevar -e -f compound_db.esl db
+efi-updatevar -e -f compound_KEK.esl KEK
+efi-updatevar -f PK.auth PK
+```
+
+Si utilizamos efi-readvar otra vez volveremos a ver las llaves de microsoft y las llaves generadas por nosotros
+(OPCIONAL) Podemos crear una copia de las llaves compuestas que hemos generado nosotros
+```shell
+efi-readvar -v PK -o new_PK.esl
+efi-readvar -v KEK -o new_KEK.esl
+efi-readvar -v db -o new_db.esl
+efi-readvar -v dbx -o new_dbx.esl
+```
+
+
+Una vez tenemos nuestras propias llaves creadas y validas en nuestra nvram, tendremos que firmar el kernel de linux 
+con el que queremos iniciar en secure boot y el bootloader, en este caso grub.
+
+Primero firmaremos el kernel, en mi caso vmlinuz
+Le llamaremos vmlinuz-zen-unsigned para diferenciarlo del que vamos a firmar,lo firmamos y para verificar que ha sido firmado correctamente podemos utilizar el comando sbverify
+```shell
+mv vmlinuz-linux-zen vmlinuz-linux-zen-unsigned 
+sbsign --key /etc/efikeys/db.key --cert /etc/efikeys/db.crt vmlinuz-linux-zen-unsigned --output vmlinuz-linux-zen
+sbverify --list vmlinuz-linux-zen
+```
+
+Desde la version 2:2.06.r334 necesitamos especificar el parametro disable-shim-lock, a demas de eso tambien necesitaremos
+cargar los modulos de grub en el propio archivo grubx64.efi ya que tampoco esta permitida la carga de los modulos fuera 
+del archivo durante el arranque, es por eso que tendremos que especificar que modulos queremos cargar en el propio archivo cuando instalemos grub, 
+pondremos los modulos en una variable para que el comando de la instalacion de grub sea mas legible.
+
+
+```shell
+GRUB_MODULES="acpi all_video boot bufio cat chain crypto datetime disk echo efi_gop efi_uga efifwsetup efinet ext2 extcmd fat font 
+fshelp gcry_crc gettext gfxterm gzio halt help linux loadenv ls mmap net normal part_gpt part_msdos priority_queue reboot relocator search 
+search_fs_file search_fs_uuid search_label terminal tpm video video_bochs video_cirrus video_colors video_fb zstd gfxmenu jpeg png"
+
+grub-install --target=x86_64-efi --efi-directory=/boot --modules=${GRUB_MODULES} --bootloader-id=Grub --sbat /usr/share/grub/sbat.csv --disable-shim-lock
+```
+
+Finalmente firmaremos grub, iremos a la particion efi, en mi caso /boot y en el archivo grubx64.efi realizaremos lo siguiente.
+
+Lo cambiaremos de nombre para diferenciar que archivo ha sido firmado
+
+```shell
+mv grubx64.efi grubx64-unsigned.efi
+#Firmamos el archivo con nuestras llaves
+sbsign --key /etc/efikeys/db.key --cert /etc/efikeys/db.crt grubx64-unsigned.efi --output grubx64.efi
+#Comprobamos que ha sido firmado
+sbverify --list grubx64.efi
+```
+
+Una vez realizado todos estos pasos podremos reiniciar el pc, activar el secure boot y al iniciar linux
+podremos comprovar si el secure boot esta activado con el siguiente comando:
+mokutil -sb
+
+Despues de haber firmado el kernel y el grub tendremos que firmar el kernel cada vez que actualizemos el sistema
+En mi caso (Arch Linux) creare un hook para que pacman firme el kernel cada vez que se actualiza el sistema
+
+Primero copiamos el archivo <Route ruta="/usr/share/libalpm/hooks/90-mkinitcpio-install.hook"/> <br/>
+al directorio <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>
+
+Y tambien copiaremos el archivo <Route ruta="/usr/share/libalpm/scripts/mkinitcpio-install"/> <br/>
+al direcotio <Route ruta="/usr/local/share/libalpm/scripts/mkinitcpio-install"/>
+
+En el archivo <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>  reemplazaremos:
+```shell
+Exec = /usr/share/libalpm/scripts/mkinitcpio-install
+```
+Por la siguiente linea
+```shell
+Exec = /usr/local/share/libalpm/scripts/mkinitcpio-install
+```
+
+Y en el archivo <Route ruta='/usr/local/share/libalpm/scripts/mkinitcpio-install'/> reemplazaremos
+
+```shell
+install -Dm644 "${line}" "/boot/vmlinuz-${pkgbase}"
+```
+Por la siguiente linea:
+```shell
+sbsign --key /path/to/db.key --cert /path/to/db.crt --output "/boot/vmlinuz-${pkgbase}" "${line}"
+```

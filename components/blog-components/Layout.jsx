@@ -14,7 +14,7 @@ export const Layout = ({ children, metadata = {}, type = "post" }) => {
     const color = useColorModeValue('black', 'white')
 
     return (
-        <Box height="auto" bg={generalBg} >
+        <Box layerStyle='selected' height="auto" bg={generalBg} >
             <OpenGraph metadata={metadata} />
             <Container maxW="container.2xl" px={[0, 4]}>
                 <PageHeader />
