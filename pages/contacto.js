@@ -33,14 +33,14 @@ export default function Contacto() {
                         <ContactAnimation />
                     </Suspense>
             </Canvas>
-            <Box color='white' bgColor='gray.900' display={['none','block']}>
+            {/* <Box color='white' bgColor='gray.900' display={['none','block']}>
                 <Navbar />
                 <Divider mt='1rem'  />
             </Box>
             <Box display={['flex','none']}>
                 <Navbar />
             </Box>
-            <ContactContent />
+            <ContactContent /> */}
         </div>
     )
 }

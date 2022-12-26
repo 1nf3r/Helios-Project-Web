@@ -3,16 +3,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 const ContactAnimation = () => {
   const desktop = useLoader(GLTFLoader, '/models/office_stuff_modified.gltf')
-  const startTime = Date.now()
-  let current = startTime
-  let elapsed = 0
   function UpdateCamera() {
-    useFrame(({ camera }) => {
-      const currentTime = Date.now()
-      current = currentTime
-      elapsed = current - startTime
-      if(camera.position.z > 0){
-        camera.position.z -= (elapsed * 0.0001)
+    useFrame(({ camera, clock }) => {
+      if(camera.position.z > 4){
+        camera.position.z -= (clock.elapsedTime * 0.01)
       }
     })
     return null

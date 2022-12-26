@@ -56,7 +56,6 @@ const BlogLayout = ({posts}) => {
                 </Box>
             </Box>
             <SimpleGrid  columns={[1,1,2,3]} spacing={10} width={['95%','80%']}  m='auto' my='10'>
-                {console.log(filteredBlogPost)}
             {!filteredBlogPost.length && 
             <Box width={['80vw']} minH={'30vh'} textAlign={'center'}>
                 <br/>
