@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 // import CameraEffect from '../components/three-components/CameraEffect';
 import EnergyCore from '../components/three-components/EnergyCore/EnergyCore';
 import HomeContent from '../components/web-components/HomeContent';
+import { Perf } from 'r3f-perf'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       {/* <Suspense fallback={null}> */}
         <Canvas camera={{ fov: 45, near: 0.1, far: 100, position: [0, 0, 13] }} >
           {/* <CameraEffect /> */}
+          <Perf />
           <EnergyCore />
         </Canvas>
       {/* </Suspense> */}

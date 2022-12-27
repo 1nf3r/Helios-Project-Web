@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { Box, Divider } from '../components/web-components/ChakraElements'
 import { OrbitControls } from "@react-three/drei";
 import ContactContent from "../components/web-components/ContactContent";
+import { Perf } from 'r3f-perf'
 
 export default function Contacto() {
     const canvasStyle = {
@@ -27,7 +28,8 @@ export default function Contacto() {
                 camera={{ fov: 40, near: 0.1, far: 100, position: [0, 2.5, 10] }}
                 style={canvasStyle} 
                 >
-                    {/* <OrbitControls /> */}
+                    <Perf />
+                    <OrbitControls />
                     <Suspense fallback={null}>
                         <directionalLight color={'#e3cb8f'} />
                         <ContactAnimation />

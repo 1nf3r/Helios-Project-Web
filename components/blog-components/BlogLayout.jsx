@@ -16,6 +16,7 @@ import { Navbar } from '../web-components/NavBar';
 import { PostListItemV1 } from './PostListItemsV1';
 import Computer from '../three-components/BlogBanner/Computer';
 import Loader from '../three-components/ProgressLoader';
+import { Perf } from 'r3f-perf'
 
 const BlogLayout = ({posts}) => {
     const [searchValue, setSearchValue] = useState('')
@@ -34,6 +35,7 @@ const BlogLayout = ({posts}) => {
                 h="30vh"
                 >
                 <Canvas camera={{ fov: 45, near: 0.1, far: 100, position: [0, 0, 30] }} >
+                    <Perf />
                     <Suspense fallback={<Loader />}>
                         <ambientLight intensity={0.1} />
                         <directionalLight />
