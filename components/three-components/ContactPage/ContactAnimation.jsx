@@ -2,7 +2,7 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 const ContactAnimation = () => {
-  const desktop = useLoader(GLTFLoader, '/models/office_stuff_modified.glb')
+  const desktop = useLoader(GLTFLoader, '/models/office_stuff_modified_test.glb')
   function UpdateCamera() {
     useFrame(({ camera, clock }) => {
       if(camera.position.z > 4 && clock.elapsedTime < 12){
