@@ -176,9 +176,9 @@ Primero copiamos el archivo <Route ruta="/usr/share/libalpm/hooks/90-mkinitcpio-
 al directorio <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>
 
 Y tambien copiaremos el archivo <Route ruta="/usr/share/libalpm/scripts/mkinitcpio-install"/> <br/>
-al direcotio <Route ruta="/usr/local/share/libalpm/scripts/mkinitcpio-install"/>
+al direcotio <Route ruta="/usr/local/share/libalpm/scripts/"/>
 
-En el archivo <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>  reemplazaremos:
+En el archivo <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>  cambiaremos:
 ```shell
 Exec = /usr/share/libalpm/scripts/mkinitcpio-install
 ```
@@ -187,7 +187,7 @@ Por la siguiente linea
 Exec = /usr/local/share/libalpm/scripts/mkinitcpio-install
 ```
 
-Y en el archivo <Route ruta='/usr/local/share/libalpm/scripts/mkinitcpio-install'/> reemplazaremos
+Y en el archivo mkinitcpio-install ubicado en <Route ruta='/usr/local/share/libalpm/scripts/'/> reemplazaremos esta linia de código 
 
 ```shell
 install -Dm644 "${line}" "/boot/vmlinuz-${pkgbase}"

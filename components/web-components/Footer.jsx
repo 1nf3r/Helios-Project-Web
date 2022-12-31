@@ -34,7 +34,7 @@ const Footer = () => {
                     <List>
                         <ListItem>
                             <ListIcon as={GithubIcon}/>
-                            <a href='#'>Github</a>
+                            <a href='https://github.com/1nf3r' target="_blank">Github</a>
                         </ListItem>
                         <ListItem>
                             <ListIcon as={LinkedinIcon}/>

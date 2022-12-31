@@ -41,6 +41,8 @@ export {
     AccordionItem,
     AccordionButton,
     AccordionPanel,
+    ScaleFade,
+    useDisclosure,
     AccordionIcon,
     Img,
     useColorModeValue,

@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three'
 
 // const pixelRatio = Math.min(window.devicePixelRatio, 2)
-const pixelRatio = 1 //MODIFICAR
+const pixelRatio = 2 //MODIFICAR
 const PointShaderMaterial = {
     transparent: true,
     depthWrite: false,

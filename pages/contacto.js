@@ -5,7 +5,6 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Box, Divider } from '../components/web-components/ChakraElements'
 import { OrbitControls } from "@react-three/drei";
-import ContactContent from "../components/web-components/ContactContent";
 import { Perf } from 'r3f-perf'
 
 export default function Contacto() {
@@ -25,24 +24,22 @@ export default function Contacto() {
                 <link rel="icon" href="/favicon.svg" />
             </Head>
             <Canvas
-                camera={{ fov: 40, near: 0.1, far: 100, position: [0, 2.5, 10] }}
-                style={canvasStyle} 
-                >
-                    <Perf />
-                    <OrbitControls />
-                    <Suspense fallback={null}>
-                        <directionalLight color={'#e3cb8f'} />
-                        <ContactAnimation />
-                    </Suspense>
+            camera={{ fov: 40, near: 0.1, far: 100, position: [-0.3, 2.61, 10] }}
+            style={canvasStyle} 
+            >
+                {/* <Perf /> */}
+                {/* <OrbitControls /> */}
+                <Suspense fallback={null}>
+                    <ContactAnimation />
+                </Suspense>
             </Canvas>
-            {/* <Box color='white' bgColor='gray.900' display={['none','block']}>
+            <Box color='white' bgColor='gray.900' display={['none','block']}>
                 <Navbar />
                 <Divider mt='1rem'  />
             </Box>
             <Box display={['flex','none']}>
                 <Navbar />
             </Box>
-            <ContactContent /> */}
         </div>
     )
 }
