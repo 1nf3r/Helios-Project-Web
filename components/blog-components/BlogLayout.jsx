@@ -75,22 +75,22 @@ const BlogLayout = ({posts}) => {
             .map((post) => (
                 <Box key={post.slug} p={4} display={{ md: 'flex' }}>
                 <Link href={`/${post.slug}`} >
-                    <a>
-                    <Box flexShrink={0}>
-                        <Img
-                        borderRadius='lg'
-                        src={post.coverPage}
-                        alt='Null'
+                    <Box>
+                        <Box flexShrink={0}>
+                            <Img
+                            borderRadius='lg'
+                            src={post.coverPage}
+                            alt='Null'
+                            />
+                        </Box>
+                        <Box textAlign='left' mt='4'>
+                        <PostListItemV1
+                            title={post.title}
+                            date={post.date}
+                            tag={post.tag}
                         />
+                        </Box>
                     </Box>
-                    <Box textAlign='left' mt='4'>
-                    <PostListItemV1
-                        title={post.title}
-                        date={post.date}
-                        tag={post.tag}
-                    />
-                    </Box>
-                    </a>
                 </Link>
             </Box>
             ))}

@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Img, IconButton } from './ChakraElements'
+import { Box, Text, Flex, Img } from './ChakraElements'
 import { ArrowDownIcon } from './ChakraIcons'
 import NextLink from 'next/link'
 import PortfolioNav from './PortfolioNav'

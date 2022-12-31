@@ -48,11 +48,9 @@ const ProjectCard = ({data}) => {
                     {data.content}
                     </Text>
                     <NextLink href={data.link}>
-                        <a>
                         <Button variant='ghost' colorScheme='teal' rightIcon={<GithubIcon />}>
                             Ver Codigo
                         </Button>
-                        </a>
                     </NextLink>
                 </Box>
             </Box>

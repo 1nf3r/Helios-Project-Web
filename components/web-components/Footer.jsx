@@ -23,10 +23,10 @@ const Footer = () => {
                 <Box minHeight={['9rem','9rem']} m={['auto',0]} mt={['0','2rem']}>
                     <Text as='u' fontSize='lg'>Navegación</Text>
                     <UnorderedList>
-                        <ListItem><Link href='/'><a>Home</a></Link></ListItem>
-                        <ListItem><Link href='/blog'><a>Blog</a></Link></ListItem>
-                        <ListItem><Link href='/mis-proyectos'><a>Proyectos</a></Link></ListItem>
-                        <ListItem><Link href='/contacto'><a>Contacto</a></Link></ListItem>
+                        <ListItem><Link href='/'>Home</Link></ListItem>
+                        <ListItem><Link href='/blog'>Blog</Link></ListItem>
+                        <ListItem><Link href='/mis-proyectos'>Proyectos</Link></ListItem>
+                        <ListItem><Link href='/contacto'>Contacto</Link></ListItem>
                     </UnorderedList>
                 </Box>
                 <Box minHeight={['9rem','9rem']} m={['auto',0]} mt={['0','2rem']}>

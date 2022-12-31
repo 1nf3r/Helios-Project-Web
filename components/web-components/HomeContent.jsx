@@ -20,7 +20,6 @@ const HomeContent = () => {
             mt={['45vh','50vh']}
             >
               <Link href="/mis-proyectos">
-                <a>
                   <Button as='button'
                    variant='outline'
                    border='1px'
@@ -37,10 +36,8 @@ const HomeContent = () => {
                    >
                     Mis Proyectos
                   </Button>       
-                </a>
               </Link>
               <Link href="/blog">
-                <a>
                   <Button as='button' 
                   variant='outline'
                   border='1px'
@@ -57,10 +54,8 @@ const HomeContent = () => {
                    >
                     Blog
                   </Button>                
-                </a>
               </Link>
               <Link href="/contacto">
-                <a>
                   <Button as='button' 
                   variant='outline'
                   border='1px'
@@ -77,7 +72,6 @@ const HomeContent = () => {
                   >
                     Contacto
                   </Button>
-                </a>
               </Link>
             </Box>
           </Box>
