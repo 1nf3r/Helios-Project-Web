@@ -4,7 +4,7 @@ import { LinkedinIcon, GithubIcon } from './ChakraIcons'
 const SocialButtons = () => {
     return (
         <Box mt='1.7rem'>
-            <a href="https://www.linkedin.com/in/jose-antonio-miranda-segura-159a99151/" target="_blank">
+            <a href="https://www.linkedin.com/in/jose-antonio-miranda-segura-159a99151/" rel="noreferrer" target="_blank">
                 <IconButton
                 variant='outline' 
                 colorScheme='cyan'  
@@ -13,7 +13,7 @@ const SocialButtons = () => {
                 mr='1rem'
                 />
             </a>
-            <a href="https://github.com/1nf3r" target="_blank">
+            <a href="https://github.com/1nf3r" rel="noreferrer" target="_blank">
                 <IconButton
                 variant='outline' 
                 colorScheme='cyan'  

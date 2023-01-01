@@ -8,7 +8,7 @@ import TitleSection from '../components/web-components/TitleSection'
 
 export default function Portfolio() {
     return(
-        <Box bgColor='gray.900'>
+        <Box bgColor='gray.900' className='scroll' >
             <TitleSection />
             <Flex 
             w='100%'

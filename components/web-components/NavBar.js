@@ -6,8 +6,8 @@ import {
   Button,
   IconButton,
   Box
-} from '../web-components/ChakraElements'
-import { HamburgerIcon, CloseIcon, MoonIcon } from '../web-components/ChakraIcons'
+} from './ChakraElements'
+import { HamburgerIcon, CloseIcon, MoonIcon } from './ChakraIcons'
 import NextLink from 'next/link'
 
 

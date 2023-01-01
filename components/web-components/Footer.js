@@ -34,11 +34,11 @@ const Footer = () => {
                     <List>
                         <ListItem>
                             <ListIcon as={GithubIcon}/>
-                            <a href='https://github.com/1nf3r' target="_blank">Github</a>
+                            <a href='https://github.com/1nf3r' rel="noreferrer" target="_blank">Github</a>
                         </ListItem>
                         <ListItem>
                             <ListIcon as={LinkedinIcon}/>
-                            <a href='https://www.linkedin.com/in/jose-antonio-miranda-segura-159a99151/' target='_blank'>Linkedin</a>
+                            <a href='https://www.linkedin.com/in/jose-antonio-miranda-segura-159a99151/' rel="noreferrer" target='_blank'>Linkedin</a>
                         </ListItem>
                     </List>
                 </Box>

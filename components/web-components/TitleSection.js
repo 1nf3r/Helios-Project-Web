@@ -47,7 +47,7 @@ const TitleSection = () => {
                 <SocialButtons />
             </Box>
             <Box mt='7rem'>
-                <NextLink href="#first-section"> 
+                <NextLink href="#first-section" > 
                     <ArrowDownIcon fontSize='1.5rem' style={{cursor: 'pointer', color: '#C8F9FF'}} />
                 </NextLink>
             </Box>
