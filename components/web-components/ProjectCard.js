@@ -1,5 +1,5 @@
 import { Box,Text,Image, Flex, Button } from './ChakraElements'
-import { GithubIcon } from './ChakraIcons';
+import { CodeIcon } from './SocialIcons';
 import NextLink from 'next/link';
 
 
@@ -48,8 +48,10 @@ const ProjectCard = ({data}) => {
                     {data.content}
                     </Text>
                     <NextLink href={data.link}>
-                        <Button variant='ghost' colorScheme='teal' rightIcon={<GithubIcon />}>
-                            Ver Codigo
+                        <Button variant='outline' colorScheme='teal' leftIcon={<CodeIcon fontSize='2vmin' />}>
+                            <Text as='samp'>
+                                Código
+                            </Text>
                         </Button>
                     </NextLink>
                 </Box>

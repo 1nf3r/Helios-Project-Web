@@ -1,5 +1,5 @@
 import { Box, Heading, Flex, Text, Tag, useColorModeValue } from "../web-components/ChakraElements";
-import { CalendarIcon } from "../web-components/ChakraIcons";
+import { CalendarIcon } from "../web-components/SocialIcons";
 
 
 export const PostListItemV1 = ({ title, date, tag }) => {

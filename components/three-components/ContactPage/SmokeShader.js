@@ -58,7 +58,7 @@ const Smoke = (props) => {
 
   return (
     <mesh ref={smokeRef} {...props}>
-      <planeBufferGeometry args={[0.05, 0.1, 32, 32]} />
+      <planeGeometry args={[0.05, 0.1, 32, 32]} />
       <shaderMaterial attach="material" args={[coffeMaterial]} />
     </mesh>
   );

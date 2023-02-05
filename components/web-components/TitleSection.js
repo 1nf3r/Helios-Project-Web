@@ -1,5 +1,5 @@
 import { Box, Text, Flex, Img } from './ChakraElements'
-import { ArrowDownIcon } from './ChakraIcons'
+import { ArrowDownIcon } from './SocialIcons'
 import NextLink from 'next/link'
 import PortfolioNav from './PortfolioNav'
 import SocialButtons from './SocialButtons'
@@ -27,14 +27,14 @@ const TitleSection = () => {
                 <Text
                     as='h1'
                     fontFamily='Comfortaa'
-                    fontSize='5.9vmin'
+                    fontSize='6.6vmin'
                     color='white'
                     >
                     Jose Antonio Miranda
                 </Text>
                 <Text
                     as='h2'
-                    fontSize='3vmin'
+                    fontSize='3.4vmin'
                     fontFamily='Comfortaa'
                     color='white'
                     align='center'
@@ -46,7 +46,7 @@ const TitleSection = () => {
                 <PortfolioNav direction={"row"} />
                 <SocialButtons />
             </Box>
-            <Box mt='7rem'>
+            <Box mt='6.5rem'>
                 <NextLink href="#first-section" > 
                     <ArrowDownIcon fontSize='1.5rem' style={{cursor: 'pointer', color: '#C8F9FF'}} />
                 </NextLink>

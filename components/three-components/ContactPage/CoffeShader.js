@@ -55,7 +55,7 @@ const Coffe = (props) => {
 
   return (
     <mesh ref={coffeRef} rotation-x={Math.PI * -0.5} rotation-z={Math.PI * -0.5} {...props}>
-      <circleBufferGeometry args={[0.1,32]} />
+      <circleGeometry args={[0.1,32]} />
       <shaderMaterial attach="material" args={[coffeMaterial]} />
     </mesh>
   );

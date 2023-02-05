@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Box, Text, Button } from './ChakraElements'
+import { Box, Text } from './ChakraElements'
+import HomeButton from './HomeButton';
 
 const HomeContent = () => {
     return (
@@ -20,58 +21,13 @@ const HomeContent = () => {
             mt={['45vh','50vh']}
             >
               <Link href="/mis-proyectos">
-                  <Button as='button'
-                   variant='outline'
-                   border='1px'
-                   borderColor='white'
-                   color='white'
-                   borderRadius='0'
-                   fontFamily='Syne Mono' 
-                   fontSize='1.25rem' 
-                   ml='0.62rem'
-                   mt={['0.62rem','0.62rem','0']}
-                   w='13rem'
-                   h='3.12rem'
-                   _hover={{bg: '#ffffff', color:'#000000'}} 
-                   >
-                    Mis Proyectos
-                  </Button>       
+                  <HomeButton title='Mis Proyectos' />      
               </Link>
               <Link href="/blog">
-                  <Button as='button' 
-                  variant='outline'
-                  border='1px'
-                  borderColor='white'
-                  color='white'
-                  borderRadius='0'
-                  fontFamily='Syne Mono' 
-                  fontSize='1.25rem'
-                  ml='0.62rem'
-                  mt={['0.62rem','0.62rem','0']}
-                  w='13rem'
-                  h='3.12rem'
-                  _hover={{bg: '#ffffff', color:'#000000'}} 
-                   >
-                    Blog
-                  </Button>                
+                  <HomeButton title='Blog' />
               </Link>
               <Link href="/contacto">
-                  <Button as='button' 
-                  variant='outline'
-                  border='1px'
-                  borderColor='white'
-                  color='white'
-                  borderRadius='0'
-                  fontFamily='Syne Mono' 
-                  fontSize='1.25rem' 
-                  ml='0.62rem'
-                  mt={['0.62rem','0.62rem','0']}
-                  w='13rem'
-                  h='3.12rem'
-                  _hover={{bg: '#ffffff', color:'#000000'}} 
-                  >
-                    Contacto
-                  </Button>
+                  <HomeButton title='Sobre Mí' />
               </Link>
             </Box>
           </Box>

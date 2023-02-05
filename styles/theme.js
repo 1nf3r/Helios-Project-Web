@@ -1,6 +1,10 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import globalStyle from "./global";
 
 const theme = extendTheme({
+    styles: {
+        global: globalStyle
+    },
     colors: {
         transparent: 'transparent',
         black: '#000',

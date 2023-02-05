@@ -7,11 +7,23 @@ import {
   IconButton,
   Box
 } from './ChakraElements'
-import { HamburgerIcon, CloseIcon, MoonIcon } from './ChakraIcons'
+import { HamburgerIcon, CloseIcon, MoonIcon } from './SocialIcons'
 import NextLink from 'next/link'
 
 
 export const Navbar = () => {
+  const handleClick = () => {
+    toggleColorMode();
+    const styleEl = document.createElement('style');
+    const cssText = document.createTextNode(
+      'html * { transition: color, background-color 0.3s ease-out!important }',
+    );
+    styleEl.appendChild(cssText);
+    document.head.appendChild(styleEl);
+    setTimeout(() => {
+      document.head.removeChild(styleEl);
+    }, 300);
+  };
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
   const [display, changeDisplay] = useState('none')
@@ -79,7 +91,7 @@ export const Navbar = () => {
           <Switch
           color="green"
           isChecked={isDark}
-          onChange={toggleColorMode}
+          onChange={handleClick}
           mr='2'
           mt='0.85rem'
           display={['none', 'none', 'flex', 'flex']}

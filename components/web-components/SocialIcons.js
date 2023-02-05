@@ -6,5 +6,6 @@ export {
     IoSearch as SearchIcon,
     IoLogoGithub as GithubIcon,
     IoLogoLinkedin as LinkedinIcon,
-    IoChevronDownSharp as ArrowDownIcon
+    IoChevronDownSharp as ArrowDownIcon,
+    IoCodeSlashOutline as CodeIcon,
 } from 'react-icons/io5'

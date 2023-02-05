@@ -11,7 +11,7 @@ import {
   Divider,
   Text,
 } from '../web-components/ChakraElements'
-import { SearchIcon } from '../web-components/ChakraIcons';
+import { SearchIcon } from '../web-components/SocialIcons';
 import { Navbar } from '../web-components/NavBar';
 import { PostListItemV1 } from './PostListItemsV1';
 import Computer from '../three-components/BlogBanner/Computer';
