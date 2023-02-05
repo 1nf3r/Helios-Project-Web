@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { Box, Divider } from '../components/web-components/ChakraElements'
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from 'r3f-perf'
+import Portfolio from "./portfolio";
 
 export default function Contacto() {
     const canvasStyle = {
@@ -23,22 +24,27 @@ export default function Contacto() {
                 <meta name="Mis Proyectos" content="IT Proyects" />
                 <link rel="icon" href="/favicon.svg" />
             </Head>
-            <Canvas
-            camera={{ fov: 40, near: 0.1, far: 100, position: [-0.3, 2.61, 10] }}
-            style={canvasStyle} 
-            >
-                {/* <Perf /> */}
-                {/* <OrbitControls /> */}
-                <Suspense fallback={null}>
-                    <ContactAnimation />
-                </Suspense>
-            </Canvas>
-            <Box color='white' bgColor='gray.900' display={['none','block']}>
-                <Navbar />
-                <Divider mt='1rem'  />
+            <Box display={['none','contents']}>
+                <Canvas
+                camera={{ fov: 40, near: 0.1, far: 100, position: [-0.3, 2.61, 10] }}
+                style={canvasStyle} 
+                >
+                    {/* <Perf /> */}
+                    {/* <OrbitControls /> */}
+                    <Suspense fallback={null}>
+                        <ContactAnimation />
+                    </Suspense>
+                </Canvas>
+                <Box color='white' bgColor='gray.900' display={['none','block']}>
+                    <Navbar />
+                    <Divider mt='1rem'  />
+                </Box>
+                <Box display={['flex','none']}>
+                    <Navbar />
+                </Box>
             </Box>
             <Box display={['flex','none']}>
-                <Navbar />
+                <Portfolio />
             </Box>
         </div>
     )

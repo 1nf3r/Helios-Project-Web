@@ -25,6 +25,7 @@ const SkillSquare = () => {
         >
             {SkillIcons.map(({ name, icon: Icon, color, bg }) => (
                 <Flex
+                key={name}
                 maxW='sm' 
                 direction='column' 
                 align='center' 
