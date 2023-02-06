@@ -43,7 +43,6 @@ export const Navbar = () => {
         >
           <NextLink href="/" passHref>
             <Button
-              as="a"
               variant="ghost"
               aria-label="Inicio"
               my={1}
@@ -55,7 +54,6 @@ export const Navbar = () => {
 
           <NextLink href="/blog" passHref>
             <Button
-              as="a"
               variant="ghost"
               aria-label="Blog"
               my={1}
@@ -67,7 +65,6 @@ export const Navbar = () => {
 
           <NextLink href="/mis-proyectos" passHref>
             <Button
-              as="a"
               variant="ghost"
               aria-label="Proyectos"
               my={1}
@@ -79,7 +76,6 @@ export const Navbar = () => {
 
           <NextLink href="/contacto" passHref>
             <Button
-              as="a"
               variant="ghost"
               aria-label="Contacto"
               my={1}
@@ -147,7 +143,6 @@ export const Navbar = () => {
         >
           <NextLink href="/" passHref>
             <Button
-              as="a"
               variant="outline"
               aria-label="Inicio"
               my={5}
@@ -160,7 +155,6 @@ export const Navbar = () => {
 
           <NextLink href="/blog" passHref>
             <Button
-              as="a"
               variant="outline"
               aria-label="Blog"
               my={5}
@@ -173,7 +167,6 @@ export const Navbar = () => {
 
           <NextLink href="/mis-proyectos" passHref>
             <Button
-              as="a"
               variant="outline"
               aria-label="Proyectos"
               my={5}
@@ -186,7 +179,6 @@ export const Navbar = () => {
 
           <NextLink href="/contacto" passHref>
             <Button
-              as="a"
               variant="outline"
               aria-label="Contacto"
               my={5}

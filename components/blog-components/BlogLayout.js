@@ -37,8 +37,8 @@ const BlogLayout = ({posts}) => {
                 <Canvas camera={{ fov: 45, near: 0.1, far: 100, position: [0, 0, 30] }} >
                     <Perf />
                     <Suspense fallback={<Loader />}>
-                        <ambientLight intensity={0.1} />
-                        <directionalLight />
+                        <directionalLight  color={'#ffffff'} position={[3,0,3]} intensity={1}/>
+                        <directionalLight  color={'#ffffff'} position={[-3,0,3]} intensity={0.5}/>
                         <Computer />
                     </Suspense>
                 </Canvas>

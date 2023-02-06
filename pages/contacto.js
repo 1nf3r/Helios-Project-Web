@@ -29,7 +29,7 @@ export default function Contacto() {
                 camera={{ fov: 40, near: 0.1, far: 100, position: [-0.3, 2.61, 10] }}
                 style={canvasStyle} 
                 >
-                    {/* <Perf /> */}
+                    <Perf />
                     {/* <OrbitControls /> */}
                     <Suspense fallback={null}>
                         <ContactAnimation />

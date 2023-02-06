@@ -39,7 +39,7 @@ const ContactAnimation = () => {
           distanceFactor={0.49}
           position={ [-0.06, 2.45, -22.654] }
           >
-            <iframe src="http://localhost:3000/portfolio" />
+            <iframe src="/portfolio" />
           </Html>
         </primitive>
         <UpdateCamera />
