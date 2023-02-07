@@ -16,11 +16,11 @@ const SkillIcons = [
 const SkillSquare = () => {
     return (
         <Flex
-        direction='row' 
-        wrap='wrap'
+        direction='row'
+        flexWrap={['wrap','wrap']}
         gap='3rem'
         justify='center'
-        width='70%'
+        width={['30rem','70%']}
         my='3rem'
         >
             {SkillIcons.map(({ name, icon: Icon, color, bg }) => (

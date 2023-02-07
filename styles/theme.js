@@ -27,7 +27,10 @@ const theme = extendTheme({
     sizes: {
         container: {
           "2xl": "1920px",
-        }
+        },
+        size: {
+          "xxl": "5rem",
+        },
     },
     config: {
         initialColorMode: 'dark',

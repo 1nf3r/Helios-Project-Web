@@ -39,9 +39,6 @@ export default function Contacto() {
                     <Navbar />
                     <Divider mt='1rem'  />
                 </Box>
-                <Box display={['flex','none']}>
-                    <Navbar />
-                </Box>
             </Box>
             <Box display={['flex','none']}>
                 <Portfolio />
