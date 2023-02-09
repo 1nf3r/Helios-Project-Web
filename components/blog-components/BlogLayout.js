@@ -42,7 +42,7 @@ const BlogLayout = ({posts}) => {
                 </Canvas>
                 </Box>
                 <Divider display={['none', 'flex', 'flex','flex']}/>
-                <Navbar />
+                <Navbar darkMode={'flex'}/>
                 <Divider mt='1.5rem' display={['none', 'flex', 'flex','flex']}/>
                 <Box w={["100%", "35%"]} m='auto' my='10' >
                 <InputGroup bg="transparent" width={['85%','80%']} m='auto' >

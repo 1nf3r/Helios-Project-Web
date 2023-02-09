@@ -11,10 +11,11 @@ import { HamburgerIcon, CloseIcon, MoonIcon } from './SocialIcons'
 import NextLink from 'next/link'
 
 
-export const Navbar = ({height, width, top}) => {
+export const Navbar = ({height, width, top, darkMode}) => {
   const vheight = height || '100vh'
   const vwidth = width || '100vw'
   const vtop = top || '38rem'
+  const vdarkMode = darkMode || 'none'
   const handleClick = () => {
     toggleColorMode();
     const styleEl = document.createElement('style');
@@ -93,7 +94,7 @@ export const Navbar = ({height, width, top}) => {
           onChange={handleClick}
           mr='2'
           mt='0.85rem'
-          display={['none', 'none', 'flex', 'flex']}
+          display={['none', 'none', vdarkMode, vdarkMode]}
         />
         <Box mt='0.95rem' display={['none', 'none', 'flex', 'flex']} >
           <MoonIcon  />
