@@ -40,7 +40,7 @@ const SkillSquare = () => {
                     >
                         <Icon fontSize='3rem' />
                     </Box>
-                    <Box style={{fontSize: '3vmin'}}>
+                    <Box style={{fontSize: '3vmin', color:'#ffffff'}}>
                         {name}
                     </Box>
                 </Flex>		
