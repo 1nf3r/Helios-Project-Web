@@ -2,37 +2,21 @@ import {
     Box,
     Text,
     Flex,
+    Img,
 } from '../components/web-components/ChakraElements'
 import Footer from '../components/web-components/Footer'
 import SkillSquare from '../components/web-components/SkillSquare'
 import TitleSection from '../components/web-components/TitleSection'
-import { useState,useEffect } from 'react'
+import useWindowDimensions from '../components/web-components/WebDimensions'
 import { Navbar } from '../components/web-components/NavBar'
 
 export default function Portfolio() {
-    const useWindowDimensions = function () {
-        let dimensions = useState({
-            width: undefined,
-            height: undefined,
-        }), windowDimensions = dimensions[0], setWindowDimensions = dimensions[1];
-        useEffect(function () {
-            function handleResize() {
-                setWindowDimensions({
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                });
-            }
-            handleResize();
-            window.addEventListener('resize', handleResize);
-            return function () { return window.removeEventListener('resize', handleResize); };
-        }, []); // Empty array ensures that effect is only run on mount
-        return windowDimensions;
-    };
+    
     const { width, height } = useWindowDimensions();
     return(
         <Box bgColor='#111618' >
-            <Box  display={['block','none']}>
-                <Navbar />
+            <Box display={['block','none']}>
+                <Navbar height={height} width={width} top={'55rem'} />
             </Box>
             <TitleSection height={height} />
             <Flex 
@@ -45,7 +29,7 @@ export default function Portfolio() {
             justify='star'
             id='first-section'
             >
-                <Box mx={['auto','15rem']} my='4rem'>
+                <Box mx={['auto','15rem']} my='3rem'>
                     <Text
                     as='h2'
                     fontSize={['8.7vmin','4.7vmin']}
@@ -55,26 +39,25 @@ export default function Portfolio() {
                         Sobre mí
                     </Text>
                 </Box>
-            </Flex>
-            <Flex 
-            w='98vw'
-            h={[height,'$100vh']}
-            as='section' 
-            align='left'
-            m='auto'
-            justify='star'
-            direction='column'
-            id='second-section'
-            >
-                <Box mx={['auto','15rem']} my='4rem'>
+                <Box w={['75%','65%']} mx='auto'>
                     <Text
-                    as='h2'
-                    fontSize={['8.7vmin','4.7vmin']}
+                    as='p'
+                    fontSize={['7vmin','3.7vmin']}
                     color='white'
-                    align='left'
+                    align={['left','justify']}
                     >
-                        Experiencia
+                        Administrador de sistemas y desarrollador de aplicaciones web y multiplataforma,
+                        entusiasta del sistema operativo Linux, formándome actualmente para acceder
+                        a la carrera de inteligencia artificial.
                     </Text>
+                    <Img
+                    borderRadius='lg'
+                    mt='3rem'
+                    mx='auto'
+                    boxSize={['19rem']}
+                    src='/images/sobre-mi/profile.jpg'
+                    alt='My Profile'
+                    />
                 </Box>
             </Flex>
             <Flex 

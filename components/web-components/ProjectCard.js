@@ -1,11 +1,12 @@
 import { Box,Text,Image, Flex, Button } from './ChakraElements'
 import { CodeIcon } from './SocialIcons';
 import NextLink from 'next/link';
+import useWindowDimensions from './WebDimensions';
 
-
-const ProjectCard = ({data}) => {    
+const ProjectCard = ({data}) => {
+    const { width, height } = useWindowDimensions();
     return (
-        <Flex h={['80vh','100vh']} justifyContent={data.position} >
+        <Flex h={[height/1.2,'100vh']} justifyContent={data.position} >
             <Box
             as='section'
             position='relative'
@@ -14,7 +15,7 @@ const ProjectCard = ({data}) => {
             p={4}
             display={{ md: 'flex' }} 
             w={['95%','50%']}
-            h={['65vh','60vh','36vh','36vh','40vh','30vh']}
+            h={['90%','60vh','36vh','36vh','40vh','30vh']}
             bgColor='gray.600'
             borderRadius='1rem'
             >
@@ -43,12 +44,13 @@ const ProjectCard = ({data}) => {
                     <Text 
                     color='white'
                     as='h3'
+                    fontSize={['4.5vmin','2vmin']}
                     mb={['0.5rem','0.5rem','0.5rem','0.5rem', '1.5rem']}
                     >
                     {data.content}
                     </Text>
-                    <NextLink href={data.link}>
-                        <Button variant='outline' colorScheme='teal' leftIcon={<CodeIcon fontSize='2vmin' />}>
+                    <NextLink target='blank' href={data.link}>
+                        <Button my={['1.5rem','0rem']} w={['100%','100%']} variant='outline' colorScheme='teal' leftIcon={<CodeIcon fontSize={['6vmin','7vmin']} />}>
                             <Text as='samp'>
                                 Código
                             </Text>

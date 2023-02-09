@@ -11,7 +11,10 @@ import { HamburgerIcon, CloseIcon, MoonIcon } from './SocialIcons'
 import NextLink from 'next/link'
 
 
-export const Navbar = () => {
+export const Navbar = ({height, width, top}) => {
+  const vheight = height || '100vh'
+  const vwidth = width || '100vw'
+  const vtop = top || '38rem'
   const handleClick = () => {
     toggleColorMode();
     const styleEl = document.createElement('style');
@@ -32,7 +35,7 @@ export const Navbar = () => {
       <Flex
         mx={[0, 'auto']}
         position={["fixed", "relative"]}
-        top={["38rem", "1rem"]}
+        top={[vtop, "1rem"]}
         right="1rem"
         align="center"
         zIndex='10'
@@ -111,11 +114,11 @@ export const Navbar = () => {
       </Flex>
       {/* Mobile Content */}
       <Flex
-        w='100vw'
+        w={vwidth}
         display={display}
         bgColor="gray.400"
         zIndex={20}
-        h="100vh"
+        h={vheight}
         pos="fixed"
         top="0"
         left="0"

@@ -7,9 +7,9 @@ const PortfolioNav = ({direction}) => {
             <Text fontSize={['7.2vmin','3.2vmin']} as='em' className='hover-underline'>
                 <Link style={{textDecoration: 'none'}} as={NextLink} href="#first-section">Sobre Mí</Link>
             </Text>
-            <Text fontSize={['7.2vmin','3.2vmin']} as='em' className='hover-underline'>
+            {/* <Text fontSize={['7.2vmin','3.2vmin']} as='em' className='hover-underline'>
                 <Link style={{textDecoration: 'none'}} as={NextLink} href="#second-section">Experiencia</Link>
-            </Text>
+            </Text> */}
             <Text fontSize={['7.2vmin','3.2vmin']} as='em' className='hover-underline'>
                 <Link style={{textDecoration: 'none'}} as={NextLink} href="#third-section">Habilidades</Link>
             </Text>

@@ -4,18 +4,26 @@ date: '11-08-2022'
 id: '3'
 description: test
 tag: 'Arch Linux'
-coverPage: '/images/blog/test.jpg'
+coverPage: '/images/blog/uefi_Screen.jpg'
 ---
 
 <br/>
+<img src="/images/blog/uefi_Screen.jpg"  width="650" height="350" style={{display:"block", margin: "auto"}}/>
 <br/>
-Antes de comenzar en la NVRam de la placa base tenemos cuatro variables llamadas: PK KEK DB DBX,
-
-- __DB__ (aka, 'signature database'): contains the trusted keys used for authenticating any applications or drivers executed in the UEFI environment<br/>
-- __DBX__ (aka, 'forbidden signature database' or 'signature database blacklist'): contains a set of explicitly untrusted keys and binary hashes. 
+<br/>
+El Secure Boot (arranque seguro), es un modo de la uefi de nuestra placa base 
+que impide iniciar cualquier software a menos que esté firmado y certificado. Este modo no trae ningún problema
+ al instalar versiones de Windows superiores a la 8, ya que estas disponen de certificación para poder iniciar el sistema operativo sin ningún problema.<br/>
+En los ultimos años en algunas distribuciones de linux como Ubuntu o Fedora han implementado un software que 
+está diseñado para funcionar como un cargador de arranque de primera etapa en sistemas UEFI, llamado shim.
+Desafortunadamente, shim no viene instalado ni configurado en la distro de Arch Linux, es por eso que en este post mostraré como generar nuestros propios certificados
+e implementarlos en nuestra placa base para poder ejecutar nuestro Arch en modo Secure Boot sin utilizar Shim.<br/>
+Antes de comenzar en la NVRam de la placa base tenemos cuatro variables llamadas: __PK__ __KEK__ __DB__ __DBX__,<br/><br/>
+ 1.__DB__ (aka, 'signature database'): contains the trusted keys used for authenticating any applications or drivers executed in the UEFI environment<br/>
+ 2.__DBX__ (aka, 'forbidden signature database' or 'signature database blacklist'): contains a set of explicitly untrusted keys and binary hashes. 
 Any application or driver signed by these keys or matching these hashes will be blocked from execution.<br/>
-- __KEK__ (key exchange keys database): contains the set of keys trusted for updating DB and DBX<br/>
-- __PK__ (platform key - while PK is often referred to simply as a single public key, it could be implemented as a database). 
+ 3.__KEK__ (key exchange keys database): contains the set of keys trusted for updating DB and DBX<br/>
+ 4.__PK__ (platform key - while PK is often referred to simply as a single public key, it could be implemented as a database). 
 Only updates signed with PK can update the KEK database.<br/>
 
 El modo secure boot de la uefi tiene dos modos: usuario y setup mode
@@ -23,7 +31,8 @@ El modo secure boot de la uefi tiene dos modos: usuario y setup mode
 
 -En el setup mode (PK no creada): se pueden establecer las variables que queramos sin ninguna llave ni firma 
 
-Despues de entender para que sirven estas 4 variables vamos a crear nuestras propias variables firmadas por nosotros mismos manteniendo las que ya estan en la nvram(certificados de microsoft).<br/>
+Después de entender para qué sirven estas 4 variables, vamos a crear nuestras propias variables firmadas por nosotros 
+mismos manteniendo las que ya están en la nvram(certificados de Microsoft).<br/>
 <br/>
 ## __Proceso a seguir:__ 
 
@@ -32,8 +41,8 @@ Despues de entender para que sirven estas 4 variables vamos a crear nuestras pro
 3.Generar nuevas llaves<br/>
 4.Crear variables compuestas de nuestras llaves propias y las llaves existentes que tenemos en el backup creado 
 anteriorimente<br/>
-5.Reiniciar el ordenador i en la uefi poner el setup mode del secure boot<br/>
-6.Iniciar nuevamente linux y cargar las variables compuestas creadas anteriormente, esto hara que despues de cargar las
+5.Reiniciar el ordenador y en la uefi poner el setup mode del secure boot<br/>
+6.Iniciar nuevamente linux y cargar las variables compuestas creadas anteriormente, esto hará que después de cargar las
 llaves, la uefi se ponga en modo usuario<br/>
 
 
@@ -41,7 +50,7 @@ llaves, la uefi se ponga en modo usuario<br/>
 ## Comandos Utilizados: <br/>
 Antes de comenzar deberemos tener las siguientes aplicaciones instaladas: efitools sbsigntools mokutil openssl
 
-Al tener un linux iniciado con el secure boot desactivado:
+Al tener un Linux iniciado con el secure boot desactivado:
 ```shell
 mkdir -p /etc/efikeys
 cd /etc/efikeys
@@ -56,7 +65,7 @@ efi-readvar -v db -o old_db.esl
 efi-readvar -v dbx -o old_dbx.esl
 ```
 
-Crearemos tres llaves con openssl, una para nuestra PK, otra sera KEK y otra para db y cambiaremos el permiso de las llaves para que nadie pueda leerlas.
+Crearemos tres llaves con openssl, una para nuestra PK, otra será KEK y otra para db y cambiaremos el permiso de las llaves para que nadie pueda leerlas.
 
 ```shell
 openssl req -new -x509 -newkey rsa:2048 -subj "/CN=My Platform Key/" -keyout PK.key -out PK.crt -days 3650 -nodes -sha256
@@ -98,8 +107,8 @@ sign-efi-sig-list -k PK.key -c PK.crt KEK compound_KEK.esl compound_KEK.auth
 sign-efi-sig-list -k KEK.key -c KEK.crt db compound_db.esl compound_db.auth
 ```
 
-Reiniciaremos el pc y entraremos a la uefi, en la opcion del secure boot lo pondremos en setup mode
-Volvemos a iniciar linux
+Reiniciaremos el pc y entraremos a la uefi, en la opción del secure boot lo pondremos en setup mode
+Volvemos a iniciar Linux
 
 Si hemos establecido el setup mode correctamente al ejecutar el comando efi-readvar nos ha tenido que salir:
 ```shell
@@ -118,7 +127,7 @@ efi-updatevar -e -f compound_KEK.esl KEK
 efi-updatevar -f PK.auth PK
 ```
 
-Si utilizamos efi-readvar otra vez volveremos a ver las llaves de microsoft y las llaves generadas por nosotros
+Si utilizamos efi-readvar otra vez volveremos a ver las llaves de Microsoft y las llaves generadas por nosotros
 (OPCIONAL) Podemos crear una copia de las llaves compuestas que hemos generado nosotros
 ```shell
 efi-readvar -v PK -o new_PK.esl
@@ -128,7 +137,7 @@ efi-readvar -v dbx -o new_dbx.esl
 ```
 
 
-Una vez tenemos nuestras propias llaves creadas y validas en nuestra nvram, tendremos que firmar el kernel de linux 
+Una vez tenemos nuestras propias llaves creadas y válidas en nuestra nvram, tendremos que firmar el kernel de Linux 
 con el que queremos iniciar en secure boot y el bootloader, en este caso grub.
 
 Primero firmaremos el kernel, en mi caso vmlinuz
@@ -139,10 +148,10 @@ sbsign --key /etc/efikeys/db.key --cert /etc/efikeys/db.crt vmlinuz-linux-zen-un
 sbverify --list vmlinuz-linux-zen
 ```
 
-Desde la version 2:2.06.r334 necesitamos especificar el parametro disable-shim-lock, a demas de eso tambien necesitaremos
-cargar los modulos de grub en el propio archivo grubx64.efi ya que tampoco esta permitida la carga de los modulos fuera 
-del archivo durante el arranque, es por eso que tendremos que especificar que modulos queremos cargar en el propio archivo cuando instalemos grub, 
-pondremos los modulos en una variable para que el comando de la instalacion de grub sea mas legible.
+Desde la versión 2:2.06.r334 necesitamos especificar el parámetro disable-shim-lock, a demás de eso también necesitaremos
+cargar los módulos de grub en el propio archivo grubx64.efi, ya que tampoco está permitida la carga de los módulos fuera
+del archivo durante el arranque, es por eso que tendremos que especificar que módulos queremos cargar en el propio archivo cuando instalemos grub,
+pondremos los módulos en una variable para que el comando de la instalación de grub sea más legible.
 
 
 ```shell
@@ -153,7 +162,7 @@ search_fs_file search_fs_uuid search_label terminal tpm video video_bochs video_
 grub-install --target=x86_64-efi --efi-directory=/boot --modules=${GRUB_MODULES} --bootloader-id=Grub --sbat /usr/share/grub/sbat.csv --disable-shim-lock
 ```
 
-Finalmente firmaremos grub, iremos a la particion efi, en mi caso /boot y en el archivo grubx64.efi realizaremos lo siguiente.
+Finalmente, firmaremos grub, iremos a la partición efi, en mi caso /boot y en el archivo grubx64.efi realizaremos lo siguiente.
 
 Lo cambiaremos de nombre para diferenciar que archivo ha sido firmado
 
@@ -165,18 +174,18 @@ sbsign --key /etc/efikeys/db.key --cert /etc/efikeys/db.crt grubx64-unsigned.efi
 sbverify --list grubx64.efi
 ```
 
-Una vez realizado todos estos pasos podremos reiniciar el pc, activar el secure boot y al iniciar linux
-podremos comprovar si el secure boot esta activado con el siguiente comando:
+Una vez realizado todos estos pasos podremos reiniciar el pc, activar el secure boot y al iniciar Linux
+podremos comprobar si el secure boot está activado con el siguiente comando:
 mokutil -sb
 
-Despues de haber firmado el kernel y el grub tendremos que firmar el kernel cada vez que actualizemos el sistema
-En mi caso (Arch Linux) creare un hook para que pacman firme el kernel cada vez que se actualiza el sistema
+Después de haber firmado el kernel y el grub tendremos que firmar el kernel cada vez que actualicemos el sistema
+En mi caso (Arch Linux) crearé un hook para que pacman firme el kernel cada vez que se actualiza el sistema
 
-Primero copiamos el archivo <Route ruta="/usr/share/libalpm/hooks/90-mkinitcpio-install.hook"/> <br/>
-al directorio <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>
-
-Y tambien copiaremos el archivo <Route ruta="/usr/share/libalpm/scripts/mkinitcpio-install"/> <br/>
-al direcotio <Route ruta="/usr/local/share/libalpm/scripts/"/>
+Copiaremos los siguientes archivos:
+```shell
+cp /usr/share/libalpm/hooks/90-mkinitcpio-install.hook /etc/pacman.d/hooks/90-mkinitcpio-install.hook
+cp /usr/share/libalpm/scripts/mkinitcpio-install /usr/local/share/libalpm/scripts/
+```
 
 En el archivo <Route ruta="/etc/pacman.d/hooks/90-mkinitcpio-install.hook"/>  cambiaremos:
 ```shell

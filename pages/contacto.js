@@ -4,8 +4,6 @@ import ContactAnimation from "../components/three-components/ContactPage/Contact
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Box, Divider } from '../components/web-components/ChakraElements'
-import { OrbitControls } from "@react-three/drei";
-import { Perf } from 'r3f-perf'
 import Portfolio from "./portfolio";
 
 export default function Contacto() {
@@ -29,8 +27,6 @@ export default function Contacto() {
                 camera={{ fov: 40, near: 0.1, far: 100, position: [-0.3, 2.61, 10] }}
                 style={canvasStyle} 
                 >
-                    <Perf />
-                    {/* <OrbitControls /> */}
                     <Suspense fallback={null}>
                         <ContactAnimation />
                     </Suspense>

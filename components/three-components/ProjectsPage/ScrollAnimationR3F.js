@@ -20,7 +20,7 @@ const ScrollAnimationR3F = () => {
       return <primitive {...primitiveProps} />
     }
     const objectsDistance = 4
-    const mesh1 = useRef(), mesh2 = useRef(), mesh3 = useRef() 
+    const mesh1 = useRef(), mesh2 = useRef(), mesh3 = useRef(), mesh4 = useRef() 
     const lightRef = useRef()
     const sectionMeshes = [mesh1, mesh2, mesh3]
  
@@ -39,6 +39,7 @@ const ScrollAnimationR3F = () => {
         mesh1.current.rotation.y -= -0.005;
         mesh2.current.rotation.y -= -0.005;
         mesh3.current.rotation.y -= -0.005;
+        mesh4.current.rotation.y -= -0.005;
         lightRef.current.intensity = Math.max(0.3, 
           Math.min(
             Math.abs(
@@ -52,7 +53,7 @@ const ScrollAnimationR3F = () => {
     return(
         <group>
           <ambientLight ref={lightRef} />
-          <Sparkles count={500} scale={5 * 5} size={6} speed={0.4} />
+          <Sparkles count={900} scale={6 * 6} size={6} speed={0.4} />
           <group 
            ref={mesh1}
            scale={[0.1,0.1,0.1]}
@@ -89,6 +90,18 @@ const ScrollAnimationR3F = () => {
               rotation={[0,0,0]}
               scale={[6,6,6]}
               route='/models/unity_icon.glb'
+            />
+          </group>
+          <group
+           ref={mesh4}
+           scale={[0.1,0.1,0.1]}
+           position={[-2,- objectsDistance * 2.9,0]}
+          >
+            <Model3D 
+              position={[1,- objectsDistance * 1.9,0]}
+              rotation={[0,0,0]}
+              scale={[6,6,6]}
+              route='/models/nextjs_icon.glb'
             />
           </group>
           <CameraEffects />
